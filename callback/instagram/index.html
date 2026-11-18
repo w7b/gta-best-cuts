@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<title>Connecting · GTA Best Cuts</title>
+<link rel="icon" type="image/png" href="../../assets/favicon.png">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<main class="wrap center" style="padding-top:80px">
+<img src="../../assets/logo.png" alt="GTA Best Cuts" width="120" height="120" style="border-radius:50%">
+<h1 id="title">Connecting…</h1>
+<p id="msg" class="muted">Finishing the sign-in and returning to the GTA Best Cuts dashboard on this computer.</p>
+<p id="pt" class="muted">Concluindo o login e voltando ao painel do GTA Best Cuts neste computador.</p>
+<p><a id="go" href="#" hidden>Continue to the dashboard · Continuar para o painel</a></p>
+</main>
+<script>
+(function () {
+  var LOCAL = 'http://127.0.0.1:8765/oauth/instagram/callback';
+  var q = window.location.search || '';
+  var p = new URLSearchParams(q);
+  var title = document.getElementById('title'), msg = document.getElementById('msg'), pt = document.getElementById('pt'), go = document.getElementById('go');
+  if (p.has('code') || p.has('error')) {
+    var target = LOCAL + q;
+    go.href = target; go.hidden = false;
+    window.location.replace(target);
+    setTimeout(function () {
+      title.textContent = 'Open the dashboard';
+      msg.textContent = 'If nothing happened, make sure the GTA Best Cuts dashboard is running on this computer and use the link below.';
+      pt.textContent = 'Se nada aconteceu, confira se o painel do GTA Best Cuts está aberto neste computador e use o link abaixo.';
+    }, 2500);
+  } else {
+    title.textContent = 'Nothing to do here';
+    msg.textContent = 'This page only completes the account sign-in for the GTA Best Cuts dashboard.';
+    pt.textContent = 'Esta página só conclui o login de contas do painel do GTA Best Cuts.';
+  }
+})();
+</script>
+</body>
+</html>
